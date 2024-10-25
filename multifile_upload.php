@@ -6,7 +6,7 @@
 	$u_email = $_SESSION["user_email"];
 	$u_name = $_SESSION['user_name'];
 	$sql = "SELECT * FROM table_name WHERE user_email = '$u_email'" ;
-  $view = sql_fetch($sql);
+  	$view = sql_fetch($sql);
 	$user_no = $view["user_no"];
 
 	$board_sql = "SELECT * FROM table_name WHERE no = '$board_no'" ;

@@ -124,363 +124,360 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	$('#tel').keydown(function(event) { //etc.핸드폰번호 자동 '-'입력
-		var key = event.charCode || event.keyCode || 0;
-		$text = $(this);
-		if (key !== 8 && key !== 9) {
-			if ($text.val().length === 3) {
-				$text.val($text.val() + '-');
-			}
-			if ($text.val().length === 8) {
-				$text.val($text.val() + '-');
-			}
+$('#tel').keydown(function(event) { //etc.핸드폰번호 자동 '-'입력
+	var key = event.charCode || event.keyCode || 0;
+	$text = $(this);
+	if (key !== 8 && key !== 9) {
+		if ($text.val().length === 3) {
+			$text.val($text.val() + '-');
 		}
-
-		return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
-	});
-
-	function divisionChange(obj){ //etc. select option에 따라 display css값 변경
-		if(obj.value == "신입"){
-			document.getElementById("portfolio_tr").style.display="revert";
-			document.getElementById("graduate_tr").style.display="revert";
-			document.getElementById("career_tr").style.display="none";
-			document.getElementById("experienced_tr").style.display="none";
-			document.getElementById("new_grade_tr").style.display="revert";
-			document.getElementById("new_eng_tr").style.display="revert";
-		}else { //경력
-			document.getElementById("portfolio_tr").style.display="revert";
-			document.getElementById("graduate_tr").style.display="revert";
-			document.getElementById("career_tr").style.display="revert";
-			document.getElementById("experienced_tr").style.display="revert";
-			document.getElementById("new_grade_tr").style.display="none";
-			document.getElementById("new_eng_tr").style.display="revert";
+		if ($text.val().length === 8) {
+			$text.val($text.val() + '-');
 		}
 	}
-	const dt0 = new DataTransfer();
-	$("#fileToUpload0").on('change', function(e){
-		var maxsize = 10*1024*1024;
-		var filesize = this.files[0].size;
-		if(filesize > maxsize){
-			this.value = "";
-			alert('파일사이즈는 10MB 이하여야합니다.');
-			return;
-		}
-		for(var i = 0; i < this.files.length; i++){
-			var fileNm = this.files.item(i).name;
-			var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
-			if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
-				this.value = "";
-				alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
-				return;
-			}
-			let fileBloc = $('<span/>', {class: 'file_block0'}),
-				fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
-			fileBloc.append('<span class="file_delete0"><span>+</span></span>')
-				.append(fileName);
-			$("#filesList0 > #files_names0").append(fileBloc);
-		};
-		for (let file of this.files) {
-			dt0.items.add(file);
-		}
-		this.files = dt0.files;
+	return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
+});
 
-		$('span.file_delete0').click(function(){
-			let name = $(this).next('span.name').text();
-			$(this).parent().remove();
-			for(let i = 0; i < dt0.items.length; i++){
-				if(name === dt0.items[i].getAsFile().name){
-					dt0.items.remove(i);
-					continue;
-				}
-			}
-			document.getElementById('fileToUpload0').files = dt0.files;
-		});
-	});
-
-	const dt1 = new DataTransfer();
-	$("#fileToUpload1").on('change', function(e){
-		var maxsize = 10*1024*1024;
-		var filesize = this.files[0].size;
-		if(filesize > maxsize){
-			this.value = "";
-			alert('파일사이즈는 10MB 이하여야합니다.');
-			return;
-		}
-		for(var i = 0; i < this.files.length; i++){
-			var fileNm = this.files.item(i).name;
-			var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
-			if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
-				this.value = "";
-				alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
-				return;
-			}
-			let fileBloc = $('<span/>', {class: 'file_block1'}),
-				fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
-			fileBloc.append('<span class="file_delete1"><span>+</span></span>')
-				.append(fileName);
-			$("#filesList1 > #files_names1").append(fileBloc);
-		};
-		for (let file of this.files) {
-			dt1.items.add(file);
-		}
-		this.files = dt1.files;
-
-		$('span.file_delete1').click(function(){
-			let name = $(this).next('span.name').text();
-			$(this).parent().remove();
-			for(let i = 0; i < dt1.items.length; i++){
-				if(name === dt1.items[i].getAsFile().name){
-					dt1.items.remove(i);
-					continue;
-				}
-			}
-			document.getElementById('fileToUpload1').files = dt1.files;
-		});
-	});
-
-	const dt2 = new DataTransfer();
-	$("#fileToUpload2").on('change', function(e){
-		var maxsize = 10*1024*1024;
-		var filesize = this.files[0].size;
-		if(filesize > maxsize){
-			this.value = "";
-			alert('파일사이즈는 10MB 이하여야합니다.');
-			return;
-		}
-		for(var i = 0; i < this.files.length; i++){
-			var fileNm = this.files.item(i).name;
-			var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
-			if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
-				this.value = "";
-				alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
-				return;
-			}
-			let fileBloc = $('<span/>', {class: 'file_block2'}),
-				fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
-			fileBloc.append('<span class="file_delete2"><span>+</span></span>')
-				.append(fileName);
-			$("#filesList2 > #files_names2").append(fileBloc);
-		};
-		for (let file of this.files) {
-			dt2.items.add(file);
-		}
-		this.files = dt2.files;
-
-		$('span.file_delete2').click(function(){
-			let name = $(this).next('span.name').text();
-			$(this).parent().remove();
-			for(let i = 0; i < dt2.items.length; i++){
-				if(name === dt2.items[i].getAsFile().name){
-					dt2.items.remove(i);
-					continue;
-				}
-			}
-			document.getElementById('fileToUpload2').files = dt2.files;
-		});
-	});
-
-	const dt3 = new DataTransfer();
-	$("#fileToUpload3").on('change', function(e){
-		var maxsize = 10*1024*1024;
-		var filesize = this.files[0].size;
-		if(filesize > maxsize){
-			this.value = "";
-			alert('파일사이즈는 10MB 이하여야합니다.');
-			return;
-		}
-		for(var i = 0; i < this.files.length; i++){
-			var fileNm = this.files.item(i).name;
-			var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
-			if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
-				this.value = "";
-				alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
-				return;
-			}
-			let fileBloc = $('<span/>', {class: 'file_block3'}),
-				fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
-			fileBloc.append('<span class="file_delete3"><span>+</span></span>')
-				.append(fileName);
-			$("#filesList3 > #files_names3").append(fileBloc);
-		};
-		for (let file of this.files) {
-			dt3.items.add(file);
-		}
-		this.files = dt3.files;
-
-		$('span.file_delete3').click(function(){
-			let name = $(this).next('span.name').text();
-			$(this).parent().remove();
-			for(let i = 0; i < dt3.items.length; i++){
-				if(name === dt3.items[i].getAsFile().name){
-					dt3.items.remove(i);
-					continue;
-				}
-			}
-			document.getElementById('fileToUpload3').files = dt3.files;
-		});
-	});
-
-
-	const dt4 = new DataTransfer();
-	$("#fileToUpload4").on('change', function(e){
-		var maxsize = 10*1024*1024;
-		var filesize = this.files[0].size;
-		if(filesize > maxsize){
-			this.value = "";
-			alert('파일사이즈는 10MB 이하여야합니다.');
-			return;
-		}
-		for(var i = 0; i < this.files.length; i++){
-			var fileNm = this.files.item(i).name;
-			var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
-			if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
-				this.value = "";
-				alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
-				return;
-			}
-			let fileBloc = $('<span/>', {class: 'file_block4'}),
-				fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
-			fileBloc.append('<span class="file_delete4"><span>+</span></span>')
-				.append(fileName);
-			$("#filesList4 > #files_names4").append(fileBloc);
-		};
-		for (let file of this.files) {
-			dt4.items.add(file);
-		}
-		this.files = dt4.files;
-
-		$('span.file_delete4').click(function(){
-			let name = $(this).next('span.name').text();
-			$(this).parent().remove();
-			for(let i = 0; i < dt4.items.length; i++){
-				if(name === dt4.items[i].getAsFile().name){
-					dt4.items.remove(i);
-					continue;
-				}
-			}
-			document.getElementById('fileToUpload4').files = dt4.files;
-		});
-	});
-
-	function cancel_popup(){
-		var result = confirm("페이지를 이동하면 작성한 내용이 사라집니다. 이 페이지에서 벗어나시겠습니까?");
-		if(result ==true){
-			location.href = "/recruit/job_board_detail.php?no=<?=$board_no?>";
-		} 
+function divisionChange(obj){ //etc. select option에 따라 display css값 변경
+	if(obj.value == "신입"){
+		document.getElementById("portfolio_tr").style.display="revert";
+		document.getElementById("graduate_tr").style.display="revert";
+		document.getElementById("career_tr").style.display="none";
+		document.getElementById("experienced_tr").style.display="none";
+		document.getElementById("new_grade_tr").style.display="revert";
+		document.getElementById("new_eng_tr").style.display="revert";
+	}else { //경력
+		document.getElementById("portfolio_tr").style.display="revert";
+		document.getElementById("graduate_tr").style.display="revert";
+		document.getElementById("career_tr").style.display="revert";
+		document.getElementById("experienced_tr").style.display="revert";
+		document.getElementById("new_grade_tr").style.display="none";
+		document.getElementById("new_eng_tr").style.display="revert";
 	}
-
-
-	function goSubmit() {
-		var fnc = "recruit_submit";
-    var user_no = "<? echo $user_no ?>";
-    var name = $("input[name='name']").val(); //이름 이외 컬럼들 생략
-		var portfolio_id = document.getElementById("fileToUpload0").value;
-		var graduate_id = document.getElementById("fileToUpload1").value;
-		var career_id = document.getElementById("fileToUpload2").value;
-		var new_grade_id = document.getElementById("fileToUpload3").value;
-		var fileInput0 = document.getElementById("fileToUpload0");
-		var fileInput1 = document.getElementById("fileToUpload1");
-		var fileInput2 = document.getElementById("fileToUpload2");
-		var fileInput3 = document.getElementById("fileToUpload3");
-		var fileInput4 = document.getElementById("fileToUpload4");
-		var filesLength0 = fileInput0.files.length;
-		var filesLength1 = fileInput1.files.length;
-		var filesLength2 = fileInput2.files.length;
-		var filesLength3 = fileInput3.files.length;
-		var filesLength4 = fileInput4.files.length;
-		var formData = new FormData();
-		var size = 0;
-		var file_path;
-		var mailfnc = "recruit_confirm_email";
-		var auth = "<?= $auth ?>";
-
-		
-		if(email == ""){ //etc. 메일 형식 확인
-			alert("이메일을 입력해주세요.");
-			$("input[name='email']").focus();
+}
+const dt0 = new DataTransfer();
+$("#fileToUpload0").on('change', function(e){
+	var maxsize = 10*1024*1024;
+	var filesize = this.files[0].size;
+	if(filesize > maxsize){
+		this.value = "";
+		alert('파일사이즈는 10MB 이하여야합니다.');
+		return;
+	}
+	for(var i = 0; i < this.files.length; i++){
+		var fileNm = this.files.item(i).name;
+		var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
+		if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
+			this.value = "";
+			alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
 			return;
-		}else{
-			var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		}
+		let fileBloc = $('<span/>', {class: 'file_block0'}),
+			fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file_delete0"><span>+</span></span>')
+			.append(fileName);
+		$("#filesList0 > #files_names0").append(fileBloc);
+	};
+	for (let file of this.files) {
+		dt0.items.add(file);
+	}
+	this.files = dt0.files;
 
-			if(exptext.test(email)==false){
-				alert("이메일형식이 올바르지 않습니다.");
-				$("input[name='email']").focus();
-				return false;
+	$('span.file_delete0').click(function(){
+		let name = $(this).next('span.name').text();
+		$(this).parent().remove();
+		for(let i = 0; i < dt0.items.length; i++){
+			if(name === dt0.items[i].getAsFile().name){
+				dt0.items.remove(i);
+				continue;
 			}
 		}
-		for(var i = 0; i < filesLength0; i++){
-			var file = fileInput0.files[i];
-			formData.append('fileToUpload[]', file);
-		}
+		document.getElementById('fileToUpload0').files = dt0.files;
+	});
+});
 
-		for(var i = 0; i < filesLength1; i++){
-			var file = fileInput1.files[i];
-			formData.append('fileToUpload[]', file);
+const dt1 = new DataTransfer();
+$("#fileToUpload1").on('change', function(e){
+	var maxsize = 10*1024*1024;
+	var filesize = this.files[0].size;
+	if(filesize > maxsize){
+		this.value = "";
+		alert('파일사이즈는 10MB 이하여야합니다.');
+		return;
+	}
+	for(var i = 0; i < this.files.length; i++){
+		var fileNm = this.files.item(i).name;
+		var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
+		if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
+			this.value = "";
+			alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
+			return;
 		}
+		let fileBloc = $('<span/>', {class: 'file_block1'}),
+			fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file_delete1"><span>+</span></span>')
+			.append(fileName);
+		$("#filesList1 > #files_names1").append(fileBloc);
+	};
+	for (let file of this.files) {
+		dt1.items.add(file);
+	}
+	this.files = dt1.files;
 
-		for(var i = 0; i < filesLength2; i++){
-			var file = fileInput2.files[i];
-			formData.append('fileToUpload[]', file);
+	$('span.file_delete1').click(function(){
+		let name = $(this).next('span.name').text();
+		$(this).parent().remove();
+		for(let i = 0; i < dt1.items.length; i++){
+			if(name === dt1.items[i].getAsFile().name){
+				dt1.items.remove(i);
+				continue;
+			}
 		}
+		document.getElementById('fileToUpload1').files = dt1.files;
+	});
+});
 
-		for(var i = 0; i < filesLength3; i++){
-			var file = fileInput3.files[i];
-			formData.append('fileToUpload[]', file);
+const dt2 = new DataTransfer();
+$("#fileToUpload2").on('change', function(e){
+	var maxsize = 10*1024*1024;
+	var filesize = this.files[0].size;
+	if(filesize > maxsize){
+		this.value = "";
+		alert('파일사이즈는 10MB 이하여야합니다.');
+		return;
+	}
+	for(var i = 0; i < this.files.length; i++){
+		var fileNm = this.files.item(i).name;
+		var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
+		if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
+			this.value = "";
+			alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
+			return;
 		}
+		let fileBloc = $('<span/>', {class: 'file_block2'}),
+			fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file_delete2"><span>+</span></span>')
+			.append(fileName);
+		$("#filesList2 > #files_names2").append(fileBloc);
+	};
+	for (let file of this.files) {
+		dt2.items.add(file);
+	}
+	this.files = dt2.files;
 
-		for(var i = 0; i < filesLength4; i++){
-			var file = fileInput4.files[i];
-			formData.append('fileToUpload[]', file);
+	$('span.file_delete2').click(function(){
+		let name = $(this).next('span.name').text();
+		$(this).parent().remove();
+		for(let i = 0; i < dt2.items.length; i++){
+			if(name === dt2.items[i].getAsFile().name){
+				dt2.items.remove(i);
+				continue;
+			}
 		}
-		formData.append('u_name', name);
-		
-	    $.ajax({
-	        type: "POST",
-	        enctype: 'multipart/form-data',
-	        url: "ajax_file.php",
-			data: formData,
-	        processData: false,
-	        contentType: false,
-	        cache: false,
-	        timeout: 600000,
-	        success: function (response) {
-				if(response == "error"){
-					alert('파일업로드 오류');
-				} else {
-					file_path = response;
-					jQuery.ajax({ 
-							type: "POST",
-							url: "apply_form.php",
-							data: {"function": fnc, "name": name, "file_path":file_path, "board_no":board_no, "user_no":user_no},
-							async : false, 
-							dataType : "json", 
-							success: function(data) {
-								if (data.resultCode == 0) {
-									jQuery.ajax({ 
-										type: "POST",
-										url: "send_email.php",
-										data: {"function": mailfnc, "auth" : auth},
-										async : false, 
-										dataType : "json", 
-										success: function(data) {
-											alert("입사지원이 완료되었습니다.");
-											location.href = "/recruit/job_board.php";
-										},
-										error: function (data) {
-											alert("메일 발생 오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.");
-										}
-									});
+		document.getElementById('fileToUpload2').files = dt2.files;
+	});
+});
+
+const dt3 = new DataTransfer();
+$("#fileToUpload3").on('change', function(e){
+	var maxsize = 10*1024*1024;
+	var filesize = this.files[0].size;
+	if(filesize > maxsize){
+		this.value = "";
+		alert('파일사이즈는 10MB 이하여야합니다.');
+		return;
+	}
+	for(var i = 0; i < this.files.length; i++){
+		var fileNm = this.files.item(i).name;
+		var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
+		if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
+			this.value = "";
+			alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
+			return;
+		}
+		let fileBloc = $('<span/>', {class: 'file_block3'}),
+			fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file_delete3"><span>+</span></span>')
+			.append(fileName);
+		$("#filesList3 > #files_names3").append(fileBloc);
+	};
+	for (let file of this.files) {
+		dt3.items.add(file);
+	}
+	this.files = dt3.files;
+
+	$('span.file_delete3').click(function(){
+		let name = $(this).next('span.name').text();
+		$(this).parent().remove();
+		for(let i = 0; i < dt3.items.length; i++){
+			if(name === dt3.items[i].getAsFile().name){
+				dt3.items.remove(i);
+				continue;
+			}
+		}
+		document.getElementById('fileToUpload3').files = dt3.files;
+	});
+});
+
+const dt4 = new DataTransfer();
+$("#fileToUpload4").on('change', function(e){
+	var maxsize = 10*1024*1024;
+	var filesize = this.files[0].size;
+	if(filesize > maxsize){
+		this.value = "";
+		alert('파일사이즈는 10MB 이하여야합니다.');
+		return;
+	}
+	for(var i = 0; i < this.files.length; i++){
+		var fileNm = this.files.item(i).name;
+		var ext = fileNm.slice(fileNm.lastIndexOf(".")+1).toLowerCase();
+		if(ext != 'pdf' && ext != 'docx' && ext != 'ppt' && ext != 'pptx'){
+			this.value = "";
+			alert('pdf, docx, ppt, pptx 파일만 등록이 가능합니다.');
+			return;
+		}
+		let fileBloc = $('<span/>', {class: 'file_block4'}),
+			fileName = $('<span/>', {class: 'name', text: this.files.item(i).name});
+		fileBloc.append('<span class="file_delete4"><span>+</span></span>')
+			.append(fileName);
+		$("#filesList4 > #files_names4").append(fileBloc);
+	};
+	for (let file of this.files) {
+		dt4.items.add(file);
+	}
+	this.files = dt4.files;
+
+	$('span.file_delete4').click(function(){
+		let name = $(this).next('span.name').text();
+		$(this).parent().remove();
+		for(let i = 0; i < dt4.items.length; i++){
+			if(name === dt4.items[i].getAsFile().name){
+				dt4.items.remove(i);
+				continue;
+			}
+		}
+		document.getElementById('fileToUpload4').files = dt4.files;
+	});
+});
+
+function cancel_popup(){
+	var result = confirm("페이지를 이동하면 작성한 내용이 사라집니다. 이 페이지에서 벗어나시겠습니까?");
+	if(result ==true){
+		location.href = "/recruit/job_board_detail.php?no=<?=$board_no?>";
+	} 
+}
+
+
+function goSubmit() {
+	var fnc = "recruit_submit";
+	var user_no = "<? echo $user_no ?>";
+	var name = $("input[name='name']").val(); //이름 이외 컬럼들 생략
+	var portfolio_id = document.getElementById("fileToUpload0").value;
+	var graduate_id = document.getElementById("fileToUpload1").value;
+	var career_id = document.getElementById("fileToUpload2").value;
+	var new_grade_id = document.getElementById("fileToUpload3").value;
+	var fileInput0 = document.getElementById("fileToUpload0");
+	var fileInput1 = document.getElementById("fileToUpload1");
+	var fileInput2 = document.getElementById("fileToUpload2");
+	var fileInput3 = document.getElementById("fileToUpload3");
+	var fileInput4 = document.getElementById("fileToUpload4");
+	var filesLength0 = fileInput0.files.length;
+	var filesLength1 = fileInput1.files.length;
+	var filesLength2 = fileInput2.files.length;
+	var filesLength3 = fileInput3.files.length;
+	var filesLength4 = fileInput4.files.length;
+	var formData = new FormData();
+	var size = 0;
+	var file_path;
+	var mailfnc = "recruit_confirm_email";
+	var auth = "<?= $auth ?>";
+	
+	if(email == ""){ //etc. 메일 형식 확인
+		alert("이메일을 입력해주세요.");
+		$("input[name='email']").focus();
+		return;
+	}else{
+		var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if(exptext.test(email)==false){
+		alert("이메일형식이 올바르지 않습니다.");
+		$("input[name='email']").focus();
+		return false;
+		}
+	}
+	
+	for(var i = 0; i < filesLength0; i++){
+		var file = fileInput0.files[i];
+		formData.append('fileToUpload[]', file);
+	}
+	
+	for(var i = 0; i < filesLength1; i++){
+		var file = fileInput1.files[i];
+		formData.append('fileToUpload[]', file);
+	}
+	
+	for(var i = 0; i < filesLength2; i++){
+		var file = fileInput2.files[i];
+		formData.append('fileToUpload[]', file);
+	}
+	
+	for(var i = 0; i < filesLength3; i++){
+		var file = fileInput3.files[i];
+		formData.append('fileToUpload[]', file);
+	}
+	
+	for(var i = 0; i < filesLength4; i++){
+		var file = fileInput4.files[i];
+		formData.append('fileToUpload[]', file);
+	}
+	formData.append('u_name', name);
+	
+	$.ajax({
+		type: "POST",
+		enctype: 'multipart/form-data',
+		url: "ajax_file.php",
+		data: formData,
+		processData: false,
+		contentType: false,
+		cache: false,
+		timeout: 600000,
+		success: function (response) {
+			if(response == "error"){
+				alert('파일업로드 오류');
+			} else {
+				file_path = response;
+				jQuery.ajax({ 
+					type: "POST",
+					url: "multifile_upload_form.php",
+					data: {"function": fnc, "name": name, "file_path":file_path, "board_no":board_no, "user_no":user_no},
+					async : false, 
+					dataType : "json", 
+					success: function(data) {
+						if (data.resultCode == 0) {
+							jQuery.ajax({ 
+								type: "POST",
+								url: "send_email.php",
+								data: {"function": mailfnc, "auth" : auth},
+								async : false, 
+								dataType : "json", 
+								success: function(data) {
+									alert("입사지원이 완료되었습니다.");
+									location.href = "/recruit/job_board.php";
+								},
+								error: function (data) {
+									alert("메일 발생 오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.");
 								}
-							}, error: function (data) {
-								alert("DB오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.");
-							}
-					});
-				}
-	        }, error: function (response) {
-	            alert('파일오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.');
-	        }
-	    });
-	}
+							});
+						}
+					}, error: function (data) {
+						alert("DB오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.");
+					}
+				});
+			}
+		}, error: function (response) {
+			alert('파일오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.');
+		}
+	});
+}
 
 function sample6_execDaumPostcode() { //etc. 우편번호 api - https://postcode.map.daum.net/guide
 	new daum.Postcode({
@@ -510,7 +507,6 @@ function sample6_execDaumPostcode() { //etc. 우편번호 api - https://postcode
 			} else {
 				// document.getElementById("sample6_extraAddress").value = '';
 			}
-
 			document.getElementById('sample6_postcode').value = data.zonecode;
 			document.getElementById("sample6_address").value = addr + extraAddr;
 			document.getElementById("sample6_detailAddress").focus();

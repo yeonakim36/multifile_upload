@@ -1,5 +1,5 @@
-<?  include $_SERVER["DOCUMENT_ROOT"]."/recruit/head.php";
-    include $_SERVER["DOCUMENT_ROOT"]."/recruit/gnb.php";
+<?  include $_SERVER["DOCUMENT_ROOT"]."/folder_name/file_name.php";
+    include $_SERVER["DOCUMENT_ROOT"]."/folder_name/file_name.php";
 
 	$board_no = preg_replace("/[^0-9]*/s", "", $_GET['no']);
 
@@ -455,13 +455,13 @@ function goSubmit() {
 						if (data.resultCode == 0) {
 							jQuery.ajax({ 
 								type: "POST",
-								url: "send_email.php",
+								url: "email_send.php",
 								data: {"function": mailfnc, "auth" : auth},
 								async : false, 
 								dataType : "json", 
 								success: function(data) {
 									alert("입사지원이 완료되었습니다.");
-									location.href = "/recruit/job_board.php";
+									location.href = "/folder_name/job_board.php";
 								},
 								error: function (data) {
 									alert("메일 발생 오류가 발생했습니다. 관리자에게 문의해주시기 바랍니다.");

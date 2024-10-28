@@ -7,8 +7,7 @@ if ($_FILES['fileToUpload']['name']) {
     $u_name = $_POST["u_name"];
     $folder_name = $current_day.$u_name;
 
-    $base_path = $_SERVER['DOCUMENT_ROOT']."/recruit/upload_file/".$c_year."/".$c_date."/".$folder_name."/"; //local
-    // $base_path = $_SERVER['DOCUMENT_ROOT']."recruit/upload_file/".$c_year."/".$c_date."/".$folder_name."/"; //live
+    $base_path = $_SERVER['DOCUMENT_ROOT']."folder_name1/folder_name2/".$c_year."/".$c_date."/".$folder_name."/"; //edit path
     
     if(!is_dir($base_path)){
         if(!mkdir($base_path, 0777, true)){

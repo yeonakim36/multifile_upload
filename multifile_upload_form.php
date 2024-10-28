@@ -1,7 +1,7 @@
 <?php
-include_once $_SERVER["DOCUMENT_ROOT"]."/lib/lib.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/lib/function.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/lib/dbconfig.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/folder_name/lib.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/folder_name/function.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/folder_name/dbconfig.php";
 
 
 if (!function_exists('recruit_submit')) {
